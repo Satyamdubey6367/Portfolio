@@ -1,24 +1,24 @@
 let menuVisible = false;
-function mostrarOcultarMenu(){
-    if(menuVisible){
-        document.getElementById("nav").classList ="";
+
+function mostrarOcultarMenu() {
+    if (menuVisible) {
+        document.getElementById("nav").classList = "";
         menuVisible = false;
-    }else{
-        document.getElementById("nav").classList ="responsive";
+    } else {
+        document.getElementById("nav").classList = "responsive";
         menuVisible = true;
     }
 }
 
-function seleccionar(){
-    
+function seleccionar() {
     document.getElementById("nav").classList = "";
     menuVisible = false;
 }
 
-function efectoHabilidades(){
+function efectoHabilidades() {
     var skills = document.getElementById("skills");
     var distancia_skills = window.innerHeight - skills.getBoundingClientRect().top;
-    if(distancia_skills >= 300){
+    if (distancia_skills >= 300) {
         let habilidades = document.getElementsByClassName("progreso");
         habilidades[0].classList.add("javascript");
         habilidades[1].classList.add("htmlcss");
@@ -32,11 +32,28 @@ function efectoHabilidades(){
         habilidades[9].classList.add("proyect");
         habilidades[10].classList.add("azure");
         habilidades[11].classList.add("leadership");
-
-
     }
 }
 
-window.onscroll = function(){
+window.onscroll = function () {
     efectoHabilidades();
-} 
+};
+
+// Function to send email using EmailJS
+function sendMail() {
+    var params = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value
+    };
+
+    emailjs.send('service_1lrphum', 'template_nwzdkd8', params)
+        .then((response) => {
+            console.log('SUCCESS!', response.status, response.text);
+            alert('Message sent successfully!');
+        })
+        .catch((error) => {
+            console.log('FAILED...', error);
+            alert('Error sending message. Please try again later.');
+        });
+}
